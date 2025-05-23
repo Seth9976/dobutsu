@@ -11,10 +11,6 @@ RLCFLAGS!=	pkg-config --cflags readline
 RLLDFLAGS!=	pkg-config --libs-only-L --libs-only-other readline
 RLLDLIBS!=	pkg-config --libs-only-l readline
 
-# for libintl support
-INTLCFLAGS=	-I/usr/local/include
-INTLLDFLAGS=	-L/usr/local/lib
-INTLLDLIBS=	-lintl
 
 # for liblzma support
 LZMACFLAGS!=	pkg-config --cflags liblzma
@@ -75,8 +71,8 @@ validatetb: $(VALIDATETBOBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LZMALDFLAGS) -o validatetb $(VALIDATETBOBJ) $(LDLIBS) $(LZMALDLIBS)
 
 dobutsu: $(DOBUTSUOBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(RLLDFLAGS) $(INTLLDFLAGS) $(LZMALDFLAGS) -o dobutsu \
-	    $(DOBUTSUOBJ) $(LDLIBS) $(RLLDLIBS) $(INTLLDLIBS) $(LZMALDLIBS) -lm
+	$(CC) $(CFLAGS) $(LDFLAGS) $(RLLDFLAGS) $(LZMALDFLAGS) -o dobutsu \
+	    $(DOBUTSUOBJ) $(LDLIBS) $(RLLDLIBS) $(LZMALDLIBS) -lm
 
 dobutsu-stub:
 	echo '#!/bin/sh' >dobutsu-stub
